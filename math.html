@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>math.html</title>
+    <script src="./jquery.js"></script>
+</head>
+<body>
+    <h1>랜덤 숫자 맞추기!</h1>
+    <button class="start">시작!</button>
+    <input type="number" disabled>
+    <button>체크!</button>
+    <h3>♥<span>10</span></h3>
+    <h4>여기에 메세지가 들어와요!</h4>
+
+    <script>
+        // math.ramdom은 무조건 * 숫자 개수로 생각하면 됩니다.
+        // parseInt로 정수화 시킨 숫자 + 시작 숫자를 의미합니다.
+
+        console.log(Math.abs(Math.random()*55)+1);
+
+        // 준비물 
+        // 1. 입력 받는 input
+        // 2. 시작버튼 || 재도전 버튼 
+        // 3. 라이프 갯수를 알려주는 무언가???
+        //  4. 결과 메세지를 알수있는 무언가 
+
+
+
+        // 인터넷에서 게임을 만들거에요!
+        //  1부터 100까지 숫자를 생각해서 숫자를 맞추는 게임
+        // 도전 기회는 10번!
+        //  유저가 들어와서 시작 버튼 누른다 
+        // input 활성화 
+        // 1. 유저로 부터 입력받는다
+        // 2. 랜덤을 돌려준다
+        // 3. 1.번 2. 의 숫자를 비교한다
+        // 4. 랜덤 숫자보다 유저의 숫자가 크면 더 작은 숫자를 유도한다 
+        // 5. 랜덤 숫자보다 유저의 숫자가 크면 더 작은 큰 숫자를 유도한다
+        //  4,5 번이 한번씩 발생할때마다 life--
+        // 6. 숫자가 같다면 당첨!
+        //  7. 재 도전을 할 수 있는 버튼을 클릭한다.
+        $('button.start').click(function(){
+          console.log($('input').attr('type'));
+        })
+
+    </script>
+</body>
+</html>
