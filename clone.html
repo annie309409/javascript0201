@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <h2>이 태그를 복제해봐요!</h2>
+        <h3>이 태그를 복제해봐요!</h3>
+    </div>
+    <script>
+       const h2 = $('h2');
+       const wrap =$('.wrap'); 
+       let obj = [
+        {
+            name:'name',
+            id : 'id'
+        },
+        {
+            name:'name',
+            id : 'id'
+        },
+        {
+            name:'name',
+            id : 'id'
+        },
+       ];
+
+       obj.forEach(function(e){
+           let h2Clone = h2.clone();
+           h2Clone.text(e.id);
+           wrap.append(h2Clone);
+            // <h3>이 태그를 복제해봐요!</h3>을 '복제해서 '
+            // id다음으로  pw가 들어올 수 있도록 작업해보세요! 
+       })
+       
+    //    for(let i = 0; i<=10; i++){
+    //        const h2Clone = h2.clone();
+    //        wrap.append(h2Clone);
+    //     }
+
+        // 퀴즈! 
+        // h2를 복제해서 10개를 만들어서 wrap안에 넣어보세요!
+        // 결과는 "이 태그를 복제해봐요!" 가 11개 반복되면 되겠죠!?
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
