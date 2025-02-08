@@ -81,6 +81,7 @@
         }
 
     </style>
+    <script src="./jquery.js"></script>
 </head>
 <body>
 
@@ -102,6 +103,17 @@
             </li>
         </ul>
     </div>
+    <script>
+       const btnAdd = $('.add-btn');
+       const todoList = $('.todo-list');
 
+       btnAdd.click(function(){
+        let todoItem = $('.todo-item').first().clone();
+        let val = $('input').val();
+        // input에 입력받은 값을 세팅해서 추가되도록 만들어보세요!
+        todoItem.children('.todo-text').text(val);
+        todoList.prepend(todoItem);
+       })
+    </script>
 </body>
 </html>

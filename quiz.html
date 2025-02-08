@@ -154,7 +154,8 @@
       let que =  $('.question-item');
       const ans =  $('.answer-item');
       const list = $('.quiz-list');
-      const submit = $('.submit-btn');
+      let submit = $('.submit-btn');
+      const hint = $('.hint');
     //   disabled를 가진 que 인 경우엔 active가 추가 되지않도록
     // 조건문을 넣어보세요! 
     // hasClass <<클래스명을 가졌는지 확인 가능 한 내장함수(jQuery용)
@@ -165,21 +166,22 @@
         }
       });
 
-      submit.click(function(){
-        let nowVal = $(this).prev().val();
-        console.log(nowVal);
-      });
+
+
+      hint.click(function(){
+        let ind = $(this).parent().attr('num-data');
+        let ans = quiz[ind].answer;
+        let inp = $(this).prevAll('.answer-input');
+        inp.attr('placeholder',ans);
+      })
+
       
       quiz.forEach(function(e,i){
         let qu = que.clone(true);
         let an = ans.clone(true);
-        // foreach를 최대한 활용하세요 (e: 배열 자체값, i: 인덱스)
-        // Q${i}.${퀴즈질문} 형식으로 텍스트가 들어오도록 세팅해보세요!
          qu.text(`Q${i+1}.${e.question}`);
          qu.addClass('disabled');
-        // 예시
-        // Q1.값을 다시 치환할 수 있는 변수의 역할로 선언하는 키워드는? 
-        // question-item인 qu에 세팅하시면 됩니다! 
+         an.attr('num-data',i);
         list.append(qu);
         list.append(an);
       })
@@ -192,7 +194,23 @@
     que = $('.question-item');
     que.first().removeClass('disabled');
 
+    submit = $('.submit-btn');
+
     // 제출버튼 클릭했을 때 
+    submit.click(function(){
+        let nowVal = $(this).prev().val();
+        let ind = $(this).parent().attr('num-data');
+        let ans = quiz[ind].answer;
+
+        if(nowVal === ans){
+            $(this).text('✔');
+            $(this).parent().next().removeClass('disabled');
+            que.removeClass('active');
+            $(this).parent().next().addClass('active');
+        }else{
+            $(this).text('✖');
+        }
+    });
 
     </script>
   </body>
