@@ -64,7 +64,7 @@
             cursor: pointer;
         }
     </style>
-    <script src="./jquery.js"></script>
+    <!-- <script src="./jquery.js"></script> -->
 </head>
 <body>
     <div class="view">
@@ -79,22 +79,48 @@
         </div>
     </div>
     <script>
-        const btns = $('button');
-        const slides = $('.slide');
-        let idx = 0;
+        // const btns = $('button');
+        // const slides = $('.slide');
+        // let idx = 0;
 
-        btns.click(function(){
-            let left = $(this).hasClass('prev');
-            if(left){
-                idx --;
-            }else{
-                idx++;
-            }
-            idx = idx%slides.length;
-            console.log(idx);
+        // btns.click(function(){
+        //     let left = $(this).hasClass('prev');
+        //     if(left){
+        //         idx --;
+        //     }else{
+        //         idx++;
+        //     }
+        //     idx = idx%slides.length;
+        //     console.log(idx);
 
-            slides.removeClass('active');
-            slides.eq(idx).addClass('active');
+        //     slides.removeClass('active');
+        //     slides.eq(idx).addClass('active');
+        // })
+
+        // js 마이그레이션
+        const btns =  document.querySelectorAll('button');
+        const slides = document.querySelectorAll('.slide');
+        let idx= 0;
+
+        btns.forEach(function(e){
+            e.addEventListener('click',function(){
+                let left = this.classList.contains('prev');
+                if(left){
+                    idx --;
+                    idx = ((idx%slides.length)+5)%5;
+                }else{
+                    idx++;
+                    idx = idx%slides.length;
+                }
+                slides.forEach(function(s,i){
+                    if(i==Math.abs(idx)){
+                        s.className += ' active';
+                    }else{
+                        s.classList.remove('active');
+                    }
+                })
+
+            })
         })
     </script>
 </body>
