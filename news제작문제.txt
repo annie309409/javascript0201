@@ -1,0 +1,17 @@
+1. html 에서 <article>전체를 
+복제 한 뒤 news의 개수만큼 추가해보세요!
+.card 안에 추가하시면 됩니다!
+news.forEach(function(){})
+dom.children('h2') :: 아규먼트로 탐색 내용을 가져올 수 있어요 ! 
+
+2. aticle내에 각각 h2는 title값과 매칭, p는 detail값과 매칭, img src는 img값과 매칭 시켜보세요!
+
+3. 원래 있었던 판을 지워주세요! 
+
+4. .card의 width값을 news데이터 개수 * 100 % 로 세팅해주세요!
+
+5. 일반 슬라이드 구현해주세요, 이전 버튼클릭 --, 다음버튼 ++
+:: animate  margineLeft 가 -값으로 들어오면 되겠죠???
+
+6. index번호에따라서 .pg 첫번째 span에는 현재 번호 위치, 
+.pg두번째 span에는 전체 페이지수를 세팅해주세요
