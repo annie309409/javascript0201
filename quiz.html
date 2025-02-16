@@ -124,6 +124,7 @@
         
       }
     </style>
+
     <!-- <script src="./jquery.js"></script> -->
   </head>
   <body>
@@ -151,58 +152,35 @@
         {question: 'jQuery에서 dom탐색을 할 수있는 함수 표시는?', answer: '$'},
         {question: '콘솔에 출력하는 함수는?', answer: 'console.log'}
       ];
-    
-      
 
-      // js마이그레이션
-      let question = document.querySelector('.quiz-list');
-      let conatiners = document.querySelector('.quiz-container');
-      let queItm =  document.querySelectorAll('.question-item');
-      let ttl= '';
-      
+      let qList =  document.querySelector('.quiz-list');
+      let qCon =  document.querySelector('.quiz-container');
+      let btn = document.querySelectorAll('.submit-btn');
       
       quiz.forEach(function(e,i){
-        let que= question.cloneNode(true);
-        let title = que.querySelector('.question-item');
-        let ans = que.querySelector('.answer-input');
-        title.innerText = `Q${i+1}.${e.question}`;
+        let list = qList.cloneNode(true);
+        let title = list.querySelector('.question-item');
+        let ans = list.querySelector('.answer-input');
+        ans.setAttribute('data-ans',e.answer);
         title.className += ' disabled';
-        ans.setAttribute('ans', e.answer);
-
-        conatiners.append(que);
-
-      })
-      
-      question.remove();
-      question =  document.querySelectorAll('.quiz-list');
-      queItm =  document.querySelectorAll('.question-item');
-
-      question[0].children[0].classList.remove('disabled');
-      question[0].children[0].className += ' active';
-      
-      let submit = document.querySelectorAll('.submit-btn');
-
-      submit.forEach(function(e){
-        e.addEventListener('click',function(){
-          let ans = this.previousElementSibling.value;
-          let ansRe =  this.previousElementSibling.getAttribute('ans'); 
-          let next = this.parentNode.parentNode.nextElementSibling.querySelector('.question-item');
-          if(ans === ansRe){
-            this.innerText = '✔';
-            this.parentNode.previousElementSibling.classList.remove('active');
-
-            if(next){
-              next.className += ' active';
-              next.classList.remove('disabled');
-            }
-
-          }else{
-            alert('오답');
-          }
-        })
+        title.innerText = `Q${i+1}.${e.question}`;
+        qCon.append(list);
       })
 
-      
+      qList.remove();
+      qList =  document.querySelectorAll('.quiz-list');
+      let fList  = qList[0].children[0];
+      fList.classList.remove('disabled');
+      fList.className += ' active'; 
+
+      btn = document.querySelectorAll('.submit-btn');
+
+      btn.forEach(function(btn){
+        btn.addEventListener('click',function(){
+          let inpAns = this.previousElementSibling.value;
+          console.log(inpAns);
+        });
+      });
 
 
     //   let que =  $('.question-item');
@@ -220,8 +198,6 @@
     //     }
     //   });
 
-
-
     //   hint.click(function(){
     //     let ind = $(this).parent().attr('num-data');
     //     let ans = quiz[ind].answer;
@@ -229,7 +205,6 @@
     //     inp.attr('placeholder',ans);
     //   })
 
-      
     //   quiz.forEach(function(e,i){
     //     let qu = que.clone(true);
     //     let an = ans.clone(true);
