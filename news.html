@@ -126,6 +126,7 @@
     let btns = $('.card-nav button');
     let contianer = $('.card-container');
     let ind = 0;
+    let like = $('.like');
        let news = [
             { title: "AI가 의료 산업을 혁신한다", detail: "AI 기술이 의료 산업에서 점점 더 중요한 역할을 하고 있습니다. 최근에는 AI를 활용한 진단 기술이 발전하여 의사들이 질병을 조기에 발견하고 정확한 치료법을 추천하는 데 도움을 주고 있습니다. 특히, 인공지능이 방대한 의료 데이터를 분석하여 최적의 치료 방법을 제시하는 시스템이 개발되면서 의료 서비스의 효율성이 크게 향상되고 있습니다.", img: "./image/slide1.jpg" },
             { title: "탄소 배출 제로를 위한 신기술", detail: "기후 변화 대응을 위해 세계 각국이 탄소 배출을 줄이기 위한 다양한 신기술을 개발하고 있습니다. 특히, 탄소 포집 및 저장(CCS) 기술이 주목받고 있으며, 이를 통해 산업 현장에서 발생하는 탄소를 효과적으로 제거할 수 있습니다. 또한, 친환경 연료 개발과 재생 가능 에너지 활용이 확대되면서 지속 가능한 미래를 위한 노력이 계속되고 있습니다.", img: "./image/slide2.jpg" },
@@ -139,7 +140,16 @@
             { title: "휴머노이드 로봇의 상용화", detail: "최근 휴머노이드 로봇이 다양한 산업 분야에서 도입되면서 상용화가 가속화되고 있습니다. 제조업과 서비스업에서 인간을 보조하는 역할을 하고 있으며, AI와 결합하여 더욱 정교한 작업을 수행할 수 있게 되었습니다. 하지만, 로봇이 인간의 일자리를 대체할 가능성에 대한 우려도 커지고 있으며, 이에 대한 사회적 논의가 필요합니다.", img: "./image/slide10.jpg" }
         ];
 
-        
+        like.click(function(){
+            $(this).toggleClass('show');
+            let show = $(this).hasClass('show');
+            if(show){
+                $(this).text('★');
+            }else{
+                $(this).text('☆');
+            }
+        })
+
         news.forEach(function(e){
             let art2 =  art.clone(true);
             art2.children('h2').text(e.title);
@@ -148,33 +158,38 @@
             card.append(art2);
         })
 
+        
+     
         art.remove();
         card.css('width',`${news.length * 100}%`);
         pg.children('span').last().text(news.length);
-        
-        btns.click(function(){
-            let left = $(this).hasClass('prev');
+
+
+
+        function slide(left){
             if(left){
                 if(ind > 0){
                     ind--;
                 }
-                // 왼쪽
             }else{
                 if(ind<news.length - 1){
                     ind++;
                 }
-
-                // 오른쪽
             }
             card.stop().animate({marginLeft : `${ind * -100}%`},500);
             pg.children('span').first().text(ind+1);
+        }
+        
+        btns.click(function(){
+            let left = $(this).hasClass('prev');
+            slide(left);
         })
 
         contianer.on('swipeleft',function(){
-            alert('left~!!');
+            slide(false);
         })
         contianer.on('swiperight',function(){
-            alert('right~!!');
+            slide(true);
         })
 
     </script>
