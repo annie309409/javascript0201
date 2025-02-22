@@ -116,6 +116,8 @@
         let msg = document.querySelector('.result');
         let score = 0; //내스코어
         let scoreC = 0; //컴퓨터 스코어 
+        let pl = document.querySelector('#player-score');
+        let cl = document.querySelector('#computer-score');
 
         let imgs = setInterval(function(){
             cnt++;
@@ -156,12 +158,17 @@
                       ){
                         //  내가이김
                         msg.innerText = '이겼습니다.';
+                        score++;
                       }else{
                         // 컴이이김
                         msg.innerText = '졌습니다!';
+                        scoreC++;
                       }
 
                   }
+                  pl.innerText=score;
+                  cl.innerText=scoreC;
+                  
                 }else{
                   clearInterval(imgs);
                   newGame();
